@@ -656,7 +656,7 @@ int adventurerEffect(struct gameState *state){
 		}
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+		if (cardDrawn != copper || cardDrawn != silver || cardDrawn != gold)
 	 	 drawntreasure++;
 		else{
 	 	 temphand[z]=cardDrawn;
@@ -678,7 +678,7 @@ int smithyEffect(struct gameState *state, int handPos){
 	int currentPlayer = whoseTurn(state);
 
       //+3 Cards
-    for (i = 0; i < 3; i++)
+    for (i = 0; i <= 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -751,9 +751,9 @@ int tributeEffect(struct gameState *state){
 	int tributeRevealedCards[2] = {-1, -1};
 	int currentPlayer = whoseTurn(state);
 	int nextPlayer = currentPlayer + 1;
-	if (nextPlayer > (state->numPlayers - 1)){
-    	nextPlayer = 0;
-  	}
+	// if (nextPlayer > (state->numPlayers - 1)){
+ //    	nextPlayer = 0;
+ //  	}
 
     if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
 		if (state->deckCount[nextPlayer] > 0){
@@ -821,7 +821,7 @@ int remodelEffect(struct gameState *state, int choice1, int choice2, int handPos
 
     if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
 	{
-	  return -1;
+	  return 0;
 	}
 
     gainCard(choice2, state, 0, currentPlayer);
@@ -840,7 +840,7 @@ int remodelEffect(struct gameState *state, int choice1, int choice2, int handPos
 	}
 
 
-    return 0;
+    return -1;
 }
 
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
