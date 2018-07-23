@@ -59,14 +59,14 @@ int main() {
 	printf("1 card was drawn from current players deck (actual number taken from deck: %d)\n", initG.deckCount[initG.whoseTurn] - G.deckCount[G.whoseTurn]);
 
 	// check that actions increased
-	if(G.numActions == initG.numActions + 1) {
+	if(G.numActions == initG.numActions + 2) {
 		printf("PASS: ");
 	}
 	else{
 		printf("FAIL: ");
 		testPass = 0;
 	}
-	printf("Number of actions increased by 1 b/c 1 action used by playing Village (actual increase: %d)\n", G.numActions - initG.numActions);
+	printf("Number of actions increased by 2 (actual increase: %d)\n", G.numActions - initG.numActions);
 
 	// check that victory and kingdom piles were untouched
 	gameStateUnchanged = victoryKingdomCompare(&G, &initG);
