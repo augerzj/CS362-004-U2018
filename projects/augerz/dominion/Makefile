@@ -63,6 +63,24 @@ unittestresult: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c card
 	gcov -f -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out 	
 
+randomtestresult: 
+	echo "Result for running random test card 1:\n" > randomtestcard1.out
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard1 >> randomtestcard1.out
+	gcov -f -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out 
+
+	echo "Result for running random test card 2:\n" > randomtestcard2.out
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2 >> randomtestcard2.out
+	gcov -f -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out 
+
+	echo "Result for running random test card adventurer:\n" > randomtestcardadventurer.out
+	gcc -o randomtestcardadventurer -g randomtestcardadventurer.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcardadventurer >> randomtestcardadventurer.out
+	gcov -f -b dominion.c >> randomtestcardadventurer.out
+	cat dominion.c.gcov >> randomtestcardadventurer.out 
 
 all: playdom player 
 
