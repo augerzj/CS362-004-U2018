@@ -750,7 +750,7 @@ int playSmithy(int currentPlayer, int handPos, struct gameState *state)
   int i;
 
   //+3 Cards
-  for (i = 0; i < 3; i += 2) {
+  for (i = 0; i < 3; i += 1) {
     drawCard(currentPlayer, state);
   }
 
